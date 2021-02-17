@@ -25,13 +25,20 @@ public class MyJFrame extends JFrame implements MouseListener{
     private JPanel panel;
     private JButton button1,button2;
     private JLabel lbl1;
-    public final Color backgrcButton;
 
     public MyJFrame(String title) throws HeadlessException {
         super(title);
+        createGUI();
         setSize(500,400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocation(200, 200);
+        
+        button1.addMouseListener(this);
+        button2.addMouseListener(this);
+        //button2.addActionCommand("-"); come variante
+        setVisible(true);
+    }
+    private void createGUI() {
         this.panel=new JPanel();
         this.button1=new JButton("+");
         this.button2=new JButton("-");
@@ -40,13 +47,7 @@ public class MyJFrame extends JFrame implements MouseListener{
         this.panel.add(this.button2);
         this.panel.add(this.lbl1);
         add(panel);
-        button1.addMouseListener(this);
-        button2.addMouseListener(this);
-        //button2.addActionCommand("-"); come variante
-        backgrcButton = button1.getBackground();
-        setVisible(true);
     }
-
 
     @Override
     public void mouseClicked(MouseEvent me) {
@@ -73,21 +74,17 @@ public class MyJFrame extends JFrame implements MouseListener{
     @Override
     public void mouseExited(MouseEvent me) {
         if(me.getSource().equals(button1))
-            button1.setBackground(backgrcButton);
+            button1.setBackground(null);
         else
           if(me.getSource().equals(button2))
-              button2.setBackground(backgrcButton);
+              button2.setBackground(null);
     }
 
         @Override
-        public void mousePressed(MouseEvent me) {
-            
-        }
+        public void mousePressed(MouseEvent me) {}
 
         @Override
-        public void mouseReleased(MouseEvent me) {
-            
-        }
+        public void mouseReleased(MouseEvent me) {}
     
     
 }
